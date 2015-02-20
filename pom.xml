@@ -56,6 +56,7 @@
         <url>http://github.com/killbill/killbill</url>
     </issueManagement>
     <properties>
+        <killbill-platform.version>0.1.3-SNAPSHOT</killbill-platform.version>
         <killbill.version>${project.version}</killbill.version>
     </properties>
 </project>
