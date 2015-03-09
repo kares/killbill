@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
+<!--<Configuration status="WARN">-->
+<Configuration status="INFO" packages="org.killbill.logging.log4j">
   <Appenders>
     <Console name="Console" target="SYSTEM_OUT">
-      <PatternLayout pattern="%d{DEFAULT} [%t] %-5level %logger{36} - %msg%n"/>
+      <!-- implicit default is "extended" %xException -->
+      <!--
+      <PatternLayout pattern="%d{DEFAULT} [%t] %-5level %logger{36} - %msg%n%exception"/>-->
+      <PatternLayout pattern="%d{DEFAULT} [%t] %-5level %logger{36} - %msg%n%yException"/>
     </Console>
   </Appenders>
 
