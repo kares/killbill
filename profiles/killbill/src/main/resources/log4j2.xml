@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{DEFAULT} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+  </Appenders>
+
+  <Loggers>
+    <!-- log4jdbc -->
+    <!-- Logs only SQL. SQL executed within a prepared statement is automatically shown with it's bind arguments replaced with the data bound at that position, for greatly increased readability. -->
+    <Logger name="jdbc.sqlonly" level="ERROR" additivity="false"/>
+    <!-- Logs the SQL, post-execution, including timing statistics on how long the SQL took to execute. -->
+    <!--
+    <Logger name="jdbc.sqltiming" level="INFO" additivity="false"/>-->
+    <Logger name="jdbc.sqltiming" level="WARN" additivity="false"/>
+    <!-- Logs ALL JDBC calls except for ResultSets. This is a very voluminous output, and is not normally needed unless tracking down a specific JDBC problem. -->
+    <Logger name="jdbc.audit" level="FATAL" additivity="false"/>
+    <!-- Even more voluminous, because all calls to ResultSet objects are logged. -->
+    <Logger name="jdbc.resultset" level="FATAL" additivity="false"/>
+    <!-- Log the jdbc results as a table. Level debug will fill in unread values in the result set. -->
+    <Logger name="jdbc.resultsettable" level="FATAL" additivity="false"/>
+    <!-- Logs connection open and close events as well as dumping all open connection numbers. This is very useful for hunting down connection leak problems. -->
+    <!--
+    <Logger name="jdbc.connection" level="ERROR" additivity="false"/>-->
+    <Logger name="jdbc.connection" level="INFO" additivity="false"/>
+
+    <Logger name="com.dmurph" level="FATAL"/>
+    <!-- Silence verbose loggers in DEBUG mode -->
+    <Logger name="org.killbill.billing.notificationq" level="INFO"/>
+    <Logger name="org.killbill.billing.queue" level="INFO"/>
+    <Logger name="org.killbill.billing.server.updatechecker" level="INFO"/>
+    <Logger name="org.eclipse" level="INFO"/>
+
+    <Root level="INFO">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>
