@@ -66,6 +66,7 @@ import org.killbill.billing.subscription.engine.dao.SubscriptionDao;
 import org.killbill.billing.subscription.engine.dao.model.SubscriptionBundleModelDao;
 import org.killbill.billing.subscription.events.SubscriptionBaseEvent;
 import org.killbill.billing.subscription.exceptions.SubscriptionBaseError;
+import org.killbill.billing.util.UUIDs;
 import org.killbill.billing.util.callcontext.CallContext;
 import org.killbill.billing.util.callcontext.InternalCallContextFactory;
 import org.killbill.billing.util.callcontext.TenantContext;
@@ -134,7 +135,7 @@ public class DefaultSubscriptionInternalApi extends SubscriptionApiBase implemen
             final DefaultSubscriptionBase baseSubscription = (DefaultSubscriptionBase) dao.getBaseSubscription(bundleId, context);
             final DateTime bundleStartDate = getBundleStartDateWithSanity(bundleId, baseSubscription, plan, requestedDate, effectiveDate, context);
             return apiService.createPlan(new SubscriptionBuilder()
-                                                 .setId(UUID.randomUUID())
+                                                 .setId(UUIDs.randomUUID())
                                                  .setBundleId(bundleId)
                                                  .setCategory(plan.getProduct().getCategory())
                                                  .setBundleStartDate(bundleStartDate)
@@ -415,7 +416,7 @@ public class DefaultSubscriptionInternalApi extends SubscriptionApiBase implemen
                         final DefaultSubscriptionBase baseSubscription = (DefaultSubscriptionBase) dao.getBaseSubscription(bundleId, context);
                         final DateTime startEffectiveDate = dryRunArguments.getEffectiveDate() != null ? dryRunArguments.getEffectiveDate() : utcNow;
                         final DateTime bundleStartDate = getBundleStartDateWithSanity(bundleId, baseSubscription, plan, startEffectiveDate, startEffectiveDate, context);
-                        final UUID subscriptionId = UUID.randomUUID();
+                        final UUID subscriptionId = UUIDs.randomUUID();
                         dryRunEvents = apiService.getEventsOnCreation(bundleId, subscriptionId, startEffectiveDate, bundleStartDate, 1L, plan, inputSpec.getPhaseType(), realPriceList,
                                                                       utcNow, startEffectiveDate, utcNow, false, context);
                         final SubscriptionBuilder builder = new SubscriptionBuilder()
